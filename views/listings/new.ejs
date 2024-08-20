@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoStay</title>
+</head>
+<body>
+    <h3>Create a new listing here</h3>
+    <form method="POST" action="/listings">
+        <input name="listing[title]" placeholder="enter title" type="text" required>
+        <br><br>
+        <textarea name="listing[description]" placeholder="enter description" required></textarea>
+        <br><br>
+        <input name="listing[image]" placeholder="Paste image URL" type="text">
+        <br><br>
+        <input name="listing[price]" placeholder="enter price" type="number" type="text" required>
+        <br><br>
+        <input name="listing[country]" placeholder="enter country" type="text" required>
+        <br><br>
+        <input name="listing[location]" placeholder="enter location" type="text" required>
+        <br><br>
+        <button>ADD</button>
+    </form>
+</body>
+</html>
