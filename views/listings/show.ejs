@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wanderlust</title>
-  </head>
+  <% layout("/layouts/boilarplate.ejs") %>
   <body>
     <h3>Listing details</h3>
     <ul>
@@ -14,5 +8,10 @@
       <li><%= listing.location %></li>
       <li><%= listing.country %></li>
     </ul>
+    <br>
+    <a href="/listings/<%= listing._id %>/edit">Edit this listing</a>
+    <form method="post" action="/listings/<%= listing._id %>?_method=Delete">
+      <button>Delete this</button>
+    </form>
   </body>
-</html>
+

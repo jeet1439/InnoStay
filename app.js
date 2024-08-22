@@ -3,7 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listing");
 const path = require("path");
+const methodOverride = require("method-override");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const ejsMate = require("ejs-mate");
 main()
   .then(() => {
     console.log("connected to DB");
@@ -17,6 +19,11 @@ async function main() {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method")); // for put and delete request
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
+
+//root direcroery:
 app.get("/", (req, res) => {
   res.send("welcome to root");
 });
@@ -55,6 +62,27 @@ app.post("/listings", async (req, res) => {
   await newListing.save();
   res.redirect("/listings");
 });
+
+//edit Route:
+app.get("/listings/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("listings/edit.ejs", { listing });
+});
+
+//update route:
+app.put("/listings/:id", async (req, res) =>{
+  let { id } = req.params;
+  await Listing.findByIdAndUpdate(id, {...req.body.listing});
+  res.redirect(`/listings/${id}`);
+});
+//Delete Route:
+app.delete("/listings/:id", async (req, res) =>{
+  let { id } = req.params;
+  let deletedListing = await Listing.findByIdAndDelete(id);
+  console.log(deletedListing);
+  res.redirect("/listings");
+})
 app.listen(8080, () => {
   console.log("server is listening at port 8080");
 });
