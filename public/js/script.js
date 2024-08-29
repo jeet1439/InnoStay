@@ -14,13 +14,4 @@
     })
   })()
 
-  //for edit.ejs
-  let para = document.getElementById('para');
-    let loader = document.getElementById('loader');
-    setTimeout(() => {
-        para.textContent = "Redirecting to the /listings";
-        loader.style.display = 'flex';
-    }, 4000);
-    setTimeout(() => {
-        window.location.href = "/listings";
-    }, 6000);
+ 
