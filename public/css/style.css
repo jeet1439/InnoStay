@@ -109,3 +109,43 @@ text-decoration: none;
     display: flex;
     justify-content: flex-end;
 }  
+/* //review section */
+h5 {
+    font-weight: 600;
+    color: #333; 
+}
+.review-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    min-height: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease;
+}
+.review-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+.review-comment {
+    font-size: 1rem; 
+    color: #333; 
+    margin-bottom: 0.5rem; 
+}
+.review-rating {
+    font-size: 1rem;
+    font-weight: 700; 
+    color: #f39c12;
+}
+.fontcr{
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+}
+
+.logo{
+    height: 40px;
+}
+
+.card-body{
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+}

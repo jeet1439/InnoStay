@@ -6,6 +6,7 @@ const sampleListings = [
     price: 1500,
     location: "Malibu",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Modern Loft in Downtown",
@@ -14,6 +15,7 @@ const sampleListings = [
     price: 1200,
     location: "New York City",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Mountain Retreat",
@@ -22,6 +24,7 @@ const sampleListings = [
     price: 1000,
     location: "Aspen",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Historic Villa in Tuscany",
@@ -30,6 +33,7 @@ const sampleListings = [
     price: 2500,
     location: "Florence",
     country: "Italy",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -38,6 +42,7 @@ const sampleListings = [
     price: 800,
     location: "Portland",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Beachfront Paradise",
@@ -46,6 +51,7 @@ const sampleListings = [
     price: 2000,
     location: "Cancun",
     country: "Mexico",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Rustic Cabin by the Lake",
@@ -54,6 +60,7 @@ const sampleListings = [
     price: 900,
     location: "Lake Tahoe",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Luxury Penthouse with City Views",
@@ -62,6 +69,7 @@ const sampleListings = [
     price: 3500,
     location: "Los Angeles",
     country: "United States",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Ski-In/Ski-Out Chalet",
@@ -70,6 +78,7 @@ const sampleListings = [
     price: 3000,
     location: "Verbier",
     country: "Switzerland",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Safari Lodge in the Serengeti",
@@ -78,6 +87,7 @@ const sampleListings = [
     price: 4000,
     location: "Serengeti National Park",
     country: "Tanzania",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Historic Canal House",
@@ -86,6 +96,7 @@ const sampleListings = [
     price: 1800,
     location: "Amsterdam",
     country: "Netherlands",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
   {
     title: "Private Island Retreat",
@@ -94,6 +105,7 @@ const sampleListings = [
     price: 10000,
     location: "Fiji",
     country: "Fiji",
+    owner: "66dd4cb86c0a29231d87a47f"
   },
 ];
  

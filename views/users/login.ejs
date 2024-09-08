@@ -1,0 +1,21 @@
+<% layout("/layouts/boilarplate.ejs") %>
+<div class="container d-flex justify-content-center mt-4 mb-4">
+    <div class="row w-100 justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="login-card p-4 border rounded shadow-sm bg-white">
+                <h2 class="text-center mb-4">Login to Innostay</h2>
+                <form action="/login" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 ">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
