@@ -97,7 +97,7 @@ text-decoration: none;
     background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 .form-control, .form-control-range {
     margin-bottom: 15px;
@@ -115,17 +115,16 @@ h5 {
     color: #333; 
 }
 .review-card {
-    border: 1px solid #e0e0e0;
+    border: 1px solid #f3f0f0;
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: #fff;
-    min-height: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    min-height: 110px;
     transition: box-shadow 0.3s ease;
 }
-.review-card:hover {
+/* .review-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-}
+} */
 .review-comment {
     font-size: 1rem; 
     color: #333; 
