@@ -7,19 +7,25 @@ const { isLoggedin } = require("../middleware.js");
 const { isOwner } = require("../middleware.js");
 const { validateListing } = require("../middleware.js");
 const listingController = require("../controller/listings.js");
+const multer  = require('multer');
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage }); 
+
 
 router.route("/")
 .get(wrapAsync(listingController.index))//index route
-.post(isLoggedin, validateListing, wrapAsync(listingController.createListing));//create route:
+.post(isLoggedin,  upload.single('Listing[image]'), validateListing, wrapAsync(listingController.createListing));//create route:
 
 //new route:
 router.get("/new", isLoggedin, (req, res) => {
     res.render("listings/new.ejs");}
 );
+//for filter page
+router.get("/filter/:category", wrapAsync(listingController.renderFilteredpage));
 
 router.route("/:id")
 .get(wrapAsync(listingController.showListing))//show route
-.put(isLoggedin,isOwner, validateListing, wrapAsync(listingController.updateListing)) //update route
+.put(isLoggedin,isOwner, upload.single('Listing[image]'), validateListing, wrapAsync(listingController.updateListing)) //update route
 .delete(isLoggedin, isOwner, wrapAsync(listingController.destroyListing)); //delete route
 
 //edit Route:

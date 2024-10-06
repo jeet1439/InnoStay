@@ -1,19 +1,18 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container container-fluid">
-        <a class="navbar-brand" href="/"><img src="/resources/logo.png" alt="" class="logo"></a>
+        <a class="navbar-brand" href="/listings"><img src="/resources/logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link"  href="/">Home</a>
-          <a class="nav-link" href="/listings">All listings</a>
-          <a class="nav-link" href="/listings/new">Add new Listing</a>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
         </div>
-          <div class="navbar-nav ms-auto">
+          <div class="navbar-nav ms-auto gap">
+            <a class="nav-link prop" href="/listings/new">List Your Property &nbsp;<i class="fa-solid fa-house"></i></a>
             <% if(!currUser){ %>
-            <a class="nav-link"  href="/signup">Sign up&nbsp;&nbsp;<i class="fa-solid fa-user"></i></a>
-            <a class="nav-link" href="/login">Log in&nbsp;&nbsp;<i class="fa-solid fa-right-to-bracket"></i></a>
+            <b><a class="nav-link"  href="/signup">Sign up&nbsp;&nbsp;<i class="fa-solid fa-user"></i></a></b>
+            <b><a class="nav-link" href="/login">Log in&nbsp;&nbsp;<i class="fa-solid fa-right-to-bracket"></i></a></b>
             <% } %>
             <% if(currUser){ %>
             <a class="nav-link" href="/logout">Logout&nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>

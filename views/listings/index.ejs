@@ -1,5 +1,7 @@
   <% layout("/layouts/boilarplate.ejs") %>
-    <h3>All listings</h3>
+    <!-- <h3>All listings</h3> -->
+    <%- include("../includes/filter.ejs") %>
+    <br>
     <!-- <form method="GET" action="/listings/new">
       <button>Create new</button>
     </form> -->
@@ -8,12 +10,14 @@
     <%for(let listing of allListings){%>
       <a href="/listings/<%= listing._id %>" class="listing-link">
       <div class="card col">
-       <img src="<%= listing.image %>" class="card-img-top" alt="listing-img" style="height: 20rem;">
+       <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-img" style="height: 20rem;">
        <div class="card-img-overlay">.</div>
        <div class="card-body"> <br>
         <p class="card-text">
           <strong><%= listing.title %></strong><br><span style="color: grey;"><i class="fa-solid fa-location-dot">&nbsp;</i><%= listing.country %></span>
-          <div class="price" style="margin-top: -12px;">&#8377; <%= listing.price.toLocaleString("en-IN") %> /night<br></div>
+          <div class="price" style="margin-top: -12px;">&#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+            <i class="taxInfo"> &nbsp;&nbsp; + 18% GST</i>
+            <br></div>
         </p>
        </div>
      </div>

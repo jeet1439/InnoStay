@@ -141,10 +141,91 @@ h5 {
 }
 
 .logo{
-    height: 40px;
+    height: 60px;
 }
 
 .card-body{
     font-family: Arial, sans-serif;
     line-height: 1.2;
+}
+
+.filter {
+    text-align: center;
+    margin-right: 1.5rem;
+    margin-top: 2rem;
+    opacity: 0.8;
+  }
+.filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+.filter-width {
+    display: flex;
+    width: 62%;
+    overflow-x: scroll;
+}
+  
+.filter-width a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.filter p {
+    font-size: 0.8rem;
+}
+#filters {
+    display: flex;
+    overflow-x: fixed !important;
+    align-items: center;
+}
+  
+#filters::-webkit-scrollbar {
+    display: none;
+  }
+  
+#filters {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    display: flex;
+    gap: 10%;
+}
+.taxInfo{
+    display: none;
+}
+.taxbox{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.4rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+.form-check-label {
+    width: 12rem;
+}
+@media (max-width: 770px) {
+    #filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .filter-width{
+        width: 97%;
+    }
+}
+.prop{
+    border: 2px solid #fe424d !important;
+    border-radius: 25px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0px 40px !important;
+}
+.prop:hover{
+    background-color: #fe424d;
+    color: #fff !important;
+}
+.gap{
+    gap: 10px;
 }

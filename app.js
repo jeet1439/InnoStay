@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV != "production"){
+  require('dotenv').config()
+}
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -15,6 +18,9 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratagy = require("passport-local");
 const User = require("./models/user.js");
+const wrapAsync = require("./utils/wrapAsync.js");
+const Listing = require("./models/listing");
+
 main()
   .then(() => {
     console.log("connected to DB");
@@ -43,9 +49,9 @@ const sessionOptions = {
   }
 };
 //root direcroery:
-app.get("/", (req, res) => {
-  res.send("welcome to root"); 
-});
+// app.get("/", (req, res) => {
+//   res.send("welcome to root"); 
+// });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -63,13 +69,12 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-//error handelimg midddle ware
 
+//error handelimg midddle ware
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "page not found"));
 });
@@ -77,7 +82,7 @@ app.use((err, rq, res, next) =>{
   let {statusCode=500, message="Something went wrong..." } = err;
   // res.status(statusCode).send(message);
   res.status(statusCode).render("error.ejs", { err })
-})
+});
 app.listen(8080, () => {                                              
   console.log("server is listening at port 8080");
 });

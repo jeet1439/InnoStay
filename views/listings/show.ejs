@@ -11,12 +11,12 @@
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card">
-        <img class="card-img-top custom-card-img" src="<%= listing.image %>" alt="listing_image"><br>
+        <img class="card-img-top custom-card-img" src="<%= listing.image.url %>" alt="listing_image"><br>
         <div class="card-body">
           <p>Owned by: <i><%= listing.owner.username %></i></p>
           <p class="card-text">
             <p><%= listing.description %></p>
-            <p><%= listing.price.toLocaleString("en-IN") %> / night </p>
+            <p> &#8377; <%= listing.price.toLocaleString("en-IN") %>/ night </p>
             <p><%= listing.location %>, <%= listing.country %></p>
           </p>
         </div>
@@ -67,9 +67,10 @@
   </div>
   <% } %>
   <br><br>
-  
 
-  <h5>Reviews</h5>
+<% if (listing.reviews.length > 0) { %>
+    <h5>Reviews</h5>  
+    <% } %>
   <div class="container">
     <div class="row">
       <% for (let review of listing.reviews) { %>
@@ -91,5 +92,10 @@
       <% } %>
     </div>
   </div>
+
   <br>
 </div>
+
+
+
+
