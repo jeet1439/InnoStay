@@ -22,6 +22,9 @@ router.get("/new", isLoggedin, (req, res) => {
 );
 //for filter page
 router.get("/filter/:category", wrapAsync(listingController.renderFilteredpage));
+//for searching
+router.get("/search", wrapAsync(listingController.renderSearchPage));
+
 
 router.route("/:id")
 .get(wrapAsync(listingController.showListing))//show route

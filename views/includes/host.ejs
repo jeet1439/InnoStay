@@ -1,0 +1,26 @@
+<div id="hosted" class="text-center">
+    <div class="hosted mb-3">
+        <i class="fa-solid fa-user fa-3x"></i>
+    </div>
+    <div class="hosted-details">
+        <p>Hosted by  <%= listing.owner.username %></p>
+        <p>Email: <%= listing.owner.email %></p>
+        <p id="host-description" class="text-muted">
+            Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
+        </p>
+        <div id="response-rt" class="text-muted">
+            <p>Response rate: 100%</p>
+            <p style="margin-top: -14px">Response time: within an hour</p>
+        </div>
+        <span><i class="fa-solid fa-ribbon"></i>&nbsp;Identity Verified&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa-solid fa-medal"></i>&nbsp;Superhost
+        </span>
+        <div class="mt-3">
+            <!-- Button trigger modal -->
+            <button id="offers" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Contact Host
+            </button>
+        </div>
+    </div>
+</div>
+<hr>

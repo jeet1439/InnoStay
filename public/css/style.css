@@ -214,6 +214,11 @@ h5 {
         width: 97%;
     }
 }
+@media (max-width: 765px){
+    .prop{
+        height: 40px;
+    }
+}
 .prop{
     border: 2px solid #fe424d !important;
     border-radius: 25px;
@@ -228,4 +233,63 @@ h5 {
 }
 .gap{
     gap: 10px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Adjust as needed */
+    margin: auto; /* Center the form */
+}
+
+.form-select {
+    border: none;
+    flex: 1; /* Allow it to grow */
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px 0 0 4px;
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Focus effect */
+}
+
+.btn-search {
+    background-color: #ff385c; /* Airbnb red */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-search:hover {
+    background-color: #ff2a4d; 
+}
+form .s-btn{
+    background-color: #1254a4;
+    color: white; 
+}
+form .s-btn:hover {
+    background-color: #0056b3; 
+    color: white; 
+}
+.searchcss{
+    margin-bottom: 14px;
+    margin-top: 14px;
+}
+#hosted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto; 
+    padding: 20px; 
 }

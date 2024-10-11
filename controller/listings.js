@@ -63,3 +63,18 @@ module.exports.renderFilteredpage = async (req, res)=>{
     let allListings = await Listing.find({});
     res.render("listings/filterindex.ejs", { allListings , category });
 };
+module.exports.renderSearchPage = async (req, res) => {
+    const { country } = req.query; 
+    let allListings = await Listing.find({});
+    if (!country) {
+        res.redirect("/listings");
+    } else {
+        allListings = allListings.filter(listing => listing.country === country);
+        if (allListings.length === 0) {
+            req.flash("error", "No listings found for the selected country.");
+        }
+    }
+    res.render("listings/searchindex.ejs", { allListings, country, messages: req.flash('error') });
+};
+
+
