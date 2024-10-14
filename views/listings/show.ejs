@@ -16,7 +16,13 @@
           <p>Owned by: <i><%= listing.owner.username %></i></p>
           <p class="card-text">
             <p><%= listing.description %></p>
-            <p> &#8377; <%= listing.price.toLocaleString("en-IN") %>/ night </p>
+            <p> &#8377; <%= listing.price.toLocaleString("en-IN") %>/ night   
+            <% if (listing.slots > 0) { %>
+              <span class="text-success"> - Available</span>
+            <% } else { %>
+              <span class="text-danger"> - Stock Out</span>
+            <% } %>
+           </p>
             <p><%= listing.location %>, <%= listing.country %></p>
           </p>
         </div>
@@ -36,12 +42,26 @@
   </div>
   <hr>
   <br>
-  <% } else { %>
+  <% } else if(currUser && listing.slots>0 ) { %>
   <div class="row justify-content-center">
     <div class="col-auto">
       <a class="btn add-btn">Book Now</a>
     </div>
   </div>
+  <hr>
+  <br>
+  <% } else {%>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <% if(listing.slots > 0){ %>
+          <a href="/login" class="btn add-btn">Login to reserve</a>
+          <% }else {%>
+            <a class="btn add-btn">Not available</a>
+            <% } %>
+  </div>
+  </div>
+  <hr>
+  <br>
   <% } %>
   <% if(currUser) { %>
   <div class="container d-flex justify-content-center align-items-center">
@@ -64,7 +84,7 @@
     </div>
   </div>
   <% } %>
-  <br><br>
+  <br>
 
 <% if (listing.reviews.length > 0) { %>
     <h5>Reviews</h5>  
@@ -89,8 +109,8 @@
       </div>
       <% } %>
     </div>
-    <hr>
     <%- include("../includes/host.ejs") %>
+    <%- include("../includes/faq.ejs")  %>
   </div>
   <br>
 </div>

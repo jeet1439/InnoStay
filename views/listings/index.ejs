@@ -17,6 +17,11 @@
           <strong><%= listing.title %></strong><br><span style="color: grey;"><i class="fa-solid fa-location-dot">&nbsp;</i><%= listing.country %></span>
           <div class="price" style="margin-top: -12px;">&#8377; <%= listing.price.toLocaleString("en-IN") %> /night
             <i class="taxInfo"> &nbsp;&nbsp; + 18% GST</i>
+            <% if (listing.slots > 0) { %>
+              <span class="text-success"> - Available</span>
+            <% } else { %>
+              <span class="text-danger"> - Stock Out</span>
+            <% } %>
             <br></div>
         </p>
        </div>

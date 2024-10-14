@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js");
 const User = require("./user.js");
+const { required, number } = require("joi");
 const listingSchema = new Schema({
   title: {
     type: String,
@@ -27,7 +28,11 @@ const listingSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ["Beachfront", "Farms", "Lake", "Lakefront", "Countryside", "Omg"],
+    enum: ["Beachfront", "Farms", "Lake", "Lakefront", "Countryside", "Omg", "AmazingPools"],
+  },
+  slots:{
+    type: Number,
+    required: true
   }
 });
 listingSchema.post("findOneAndDelete", async (listing) =>{

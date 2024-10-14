@@ -35,12 +35,21 @@
                 <div class="valid-feedback">Looks good!</div>
             </div>
         </div>
-        <div class="mb-3">
+        <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="slots" class="form-label">Slots available</label>
+            <input name="listing[slots]" placeholder="ex: 1/2 .." type="text" class="form-control" required>
+            <div class="invalid-feedback">please enter Available Slots</div>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3 col-md-8">
             <label for="location" class="form-label">Location</label>
             <input name="listing[location]" placeholder="Rajarhat, kolkata" type="text" class="form-control" required>
             <div class="invalid-feedback">Please enter the location</div>
             <div class="valid-feedback">Looks good!</div>
         </div>
+    </div>
+
         <button class="btn add-btn mt-3">ADD</button>
     </form>
     <br>
