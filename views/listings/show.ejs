@@ -7,7 +7,6 @@
     </div>
   </div>
   
-  
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card">
@@ -45,7 +44,7 @@
   <% } else if(currUser && listing.slots>0 ) { %>
   <div class="row justify-content-center">
     <div class="col-auto">
-      <a class="btn add-btn">Book Now</a>
+      <a href="/listings/book/<%= listing._id %>" class="btn add-btn">Book now</a>
     </div>
   </div>
   <hr>

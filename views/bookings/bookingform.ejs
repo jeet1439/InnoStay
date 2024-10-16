@@ -1,0 +1,82 @@
+<% layout("/layouts/boilarplate.ejs") %>
+<style>
+body {
+    margin: auto;
+    overflow: auto;
+    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgb(58, 135, 250) 98%);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+}
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+}
+</style>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h2 class="text-center">Book Your Stay</h2>
+        <br>
+        <form action="/listings/book/payment/<%= listingId %>" method="POST" class="needs-validation" novalidate>
+            <div class="mb-2 row">
+                <label for="checkinDate" class="form-label col-md-3">Check-in Date</label>
+                <div class="col-md-7">
+                    <input type="date" class="form-control" id="checkinDate" name="checkinDate" required>
+                    <div class="invalid-feedback">
+                        Please select a check-in date.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="checkoutDate" class="form-label col-md-3">Check-out Date</label>
+                <div class="col-md-7">
+                    <input type="date" class="form-control" id="checkoutDate" name="checkoutDate" required>
+                    <div class="invalid-feedback">
+                        Please select a check-out date.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="email" class="form-label col-md-3">Email address</label>
+                <div class="col-md-7">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="address" class="form-label col-md-3">Address</label>
+                <div class="col-md-7">
+                    <textarea class="form-control" id="address" name="address" rows="2" placeholder="Enter your address" required></textarea>
+                    <div class="invalid-feedback">
+                        Please provide your address.
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn add-btn mt-3">Submit Booking</button>
+            </div>
+        </form>
+        <br>
+    </div>
+</div>
+<div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+    

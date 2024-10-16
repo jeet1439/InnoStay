@@ -20,7 +20,7 @@ const LocalStratagy = require("passport-local");
 const User = require("./models/user.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const Listing = require("./models/listing");
-
+const paymentRouter = require("./routes/payment.js");
 main()
   .then(() => {
     console.log("connected to DB");
@@ -72,7 +72,7 @@ app.use((req, res, next) => {
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
+app.use("/listings/book", paymentRouter);
 
 //error handelimg midddle ware
 app.all("*", (req, res, next) => {
