@@ -1,29 +1,15 @@
-// const Razorpay = require('razorpay');
-// const crypto = require('crypto');
-const Listing = require('../models/listing'); // Assuming you have a model for listings
-
-// const razorpayInstance = new Razorpay({
-//     key_id: process.env.RAZORPAY_KEY_ID,
-//     key_secret: process.env.RAZORPAY_KEY_SECRET,
-// });
-
-// Controller to calculate price and create Razorpay order
+const Listing = require('../models/listing'); 
 module.exports.createOrder = async (req, res) => {
     const { checkinDate, checkoutDate, email, address } = req.body;
     const listingId = req.params.id;
-
     try {
-        // Fetch the listing by ID
         const listing = await Listing.findById(listingId);
         if (!listing) {
             return res.status(404).send("Listing not found.");
         }
-
-        // Calculate number of days for the booking
         const checkin = new Date(checkinDate);
         const checkout = new Date(checkoutDate);
-        const days = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)); // Convert ms to days
-
+        const days = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
         if (days <= 0) {
             return res.status(400).send("Invalid booking dates.");
         }

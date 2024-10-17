@@ -1,5 +1,8 @@
 <h3>Payment Slip</h3>
-<p>Listing: <%= listing.name %></p>
+<p>Listing: <%= listing.title %></p>
+<div >
+    <img src="<%=listing.image.url %>" alt="" srcset="" style="width: 15%;">
+</div>
 <p>Check-in Date: <%= checkinDate %></p>
 <p>Check-out Date: <%= checkoutDate %></p>
 <p>Email: <%= email %></p>
@@ -7,4 +10,4 @@
 <p>Number of days: <%= days %></p>
 <p>Total Amount: ₹<%= amount / 100 %></p>
 <p>After Tax: <%= totalAfterTax/100 %> </p>
-
+<h2>Payment wil be integrated through this route</h2>
