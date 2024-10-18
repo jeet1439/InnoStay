@@ -6,9 +6,11 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
+const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 // const dbUrl = process.env.ATLASDB_URL;
+
+
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const Review = require("./models/review.js");
@@ -50,11 +52,11 @@ const store = MongoStore.create({
   },
   touchAfter: 24 * 3600
 });
-store.on("error", ()=> {
-  console.log("error in mongo session store", err);
+store.on("error", (err) => {
+  console.log("Error in Mongo session store", err);
 });
 const sessionOptions = {
-  srore: store,
+  store: store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
@@ -66,10 +68,10 @@ const sessionOptions = {
 };
 
 
-//root direcroery:
-// app.get("/", (req, res) => {
-//   res.send("welcome to root"); 
-// });
+// root direcroery:
+app.get("/", (req, res) => {
+  res.render("landing.ejs"); 
+});
 
 app.use(session(sessionOptions));
 app.use(flash());

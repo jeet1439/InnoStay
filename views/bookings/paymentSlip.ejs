@@ -1,5 +1,25 @@
 <% layout("/layouts/boilarplate.ejs") %>
-  <div class="container mt-5">
+<style>
+  .card-img-top {
+margin-bottom: 20px;
+}
+.card-img-top img {
+border-radius: 8px;
+border: 1px solid #dee2e6;
+}
+.col-md-6 {
+padding: 10px 20px;
+}
+@media (max-width: 767px) {
+.container {
+  padding: 15px;
+}
+.card-img-top img {
+  width: 100%;
+}
+}
+</style>
+  <div class="container mt-2">
     <div id="paymentSuccessAlert" class="alert alert-success mt-3 d-none" role="alert">
         Payment Successful! You will be redirected to your bookings shortly.
       </div>
@@ -48,6 +68,7 @@
           <input type="hidden" name="listing[_id]" value="<%= listing._id %>">
           <input type="hidden" name="checkinDate" value="<%= checkinDate %>">
           <input type="hidden" name="checkoutDate" value="<%= checkoutDate %>">
+          <p>Note: This payment method is a simulation, no actual <br> money is deducted</p>
           <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
         </form>
       </div>
