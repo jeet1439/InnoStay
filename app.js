@@ -6,9 +6,9 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
-const dbUrl = process.env.ATLASDB_URL;
+// const dbUrl = process.env.ATLASDB_URL;
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const Review = require("./models/review.js");
@@ -24,6 +24,8 @@ const User = require("./models/user.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const Listing = require("./models/listing");
 const paymentRouter = require("./routes/payment.js");
+const policyRouter = require("./routes/policy.js");
+const { currentUser } = require('./middleware.js');
 main()
   .then(() => {
     console.log("connected to DB");
@@ -32,7 +34,7 @@ main()
     console.log("error");
   });
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(MONGO_URL);
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -42,7 +44,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
 const store = MongoStore.create({
-  mongoUrl: dbUrl,
+  mongoUrl: MONGO_URL,
   crypto:{
     secret: process.env.SECRET
   },
@@ -89,22 +91,22 @@ app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.use("/listings/book", paymentRouter);
+app.use("/policy", policyRouter );
 
-app.get("/contactus", (req, res) => {
-  res.render("policy/contactus.ejs");
+
+app.get("/myBookings", (req, res) => {
+  if (req.isAuthenticated()) {
+      res.locals.currUser = req.user;
+      // console.log("Current User:", res.locals.currUser);
+      res.render("bookings/myBookings", { user: res.locals.currUser });
+  } else {
+      req.flash("error", "You must be logged in to view your bookings.");
+      return res.redirect("/login");
+  }
 });
-app.get("/Privacy", (req, res) => {
-  res.render("policy/privacy.ejs");
-});
-app.get("/terms", (req, res) => {
-  res.render("policy/terms.ejs");
-});
-app.get("/refunds",(req, res)=>{
-  res.render("policy/refunds.ejs");
-});
-app.get("/disclaimer", (req, res)=>{
-  res.render("policy/dis.ejs");
-})
+
+
+
 //error handelimg midddle ware
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "page not found"));

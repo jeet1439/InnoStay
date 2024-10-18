@@ -51,10 +51,7 @@ body {
             <div class="mb-2 row">
                 <label for="email" class="form-label col-md-3">Email address</label>
                 <div class="col-md-7">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-                    <div class="invalid-feedback">
-                        Please enter a valid email address.
-                    </div>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" readonly>
                 </div>
             </div>
             <div class="mb-2 row">

@@ -1,5 +1,9 @@
-const Listing = require('../models/listing'); 
+const Listing = require('../models/listing');
+const User = require('../models/user');
+const { v4: uuidv4 } = require('uuid');
+
 module.exports.createOrder = async (req, res) => {
+
     const { checkinDate, checkoutDate, email, address } = req.body;
     const listingId = req.params.id;
     try {
@@ -13,20 +17,10 @@ module.exports.createOrder = async (req, res) => {
         if (days <= 0) {
             return res.status(400).send("Invalid booking dates.");
         }
-
-        // Calculate total price based on the number of days
-        const pricePerDay = listing.price; // Assuming the listing has a price field
-        const totalAmount = days * pricePerDay * 100; // Razorpay uses smallest currency units
+        const pricePerDay = listing.price; 
+        const totalAmount = days * pricePerDay * 100; 
         const amoutAfterTax = totalAmount + (totalAmount*18)/100;
-        // const options = {
-        //     amount: totalAmount,
-        //     currency: "INR",
-        //     receipt: `receipt_order_${Date.now()}`,
-        // };
-        // Create Razorpay order
-        // const order = await razorpayInstance.orders.create(options);
         res.render('bookings/paymentSlip.ejs', {
-            // orderId: order.id,
             amount: totalAmount,
             email,
             checkinDate,
@@ -35,9 +29,50 @@ module.exports.createOrder = async (req, res) => {
             days,
             listing,
             totalAfterTax:  amoutAfterTax,
+
         });
     } catch (error) {
-        console.error("Error creating Razorpay order:", error);
+        console.error("Error creating order:", error);
         res.status(500).send("Some error occurred while processing your booking.");
     }
 };
+
+module.exports.processPayment = async (req, res) => {
+    res.locals.currUser = req.user;
+    const { email, checkinDate, checkoutDate, amount, listing } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).send("User not found.");
+        }
+        const bookingId = uuidv4();
+
+        const booking = {
+            bookingId: bookingId, 
+            checkinDate: new Date(checkinDate), 
+            checkoutDate: new Date(checkoutDate),
+            amount: amount, 
+            listing: {
+                title: listing.title, 
+                image: {
+                    url: listing.image.url 
+                }
+            }
+        };
+        user.bookings.push(booking);
+        await user.save();
+        const updatedListing = await Listing.findByIdAndUpdate( listing._id,{ $inc: { slots: -1 } }, { new: true });
+        if (!updatedListing) {
+            return res.status(404).send("Listing not found or no slots available.");
+        }
+        // Corrected the response handling
+        // res.status(200).json({ message: 'Payment processed and booking saved successfully!' });
+        // res.render("bookings/myBookings.ejs", { user: res.locals.currUser });
+        res.redirect("/listings");
+    } catch (error) {
+        console.error("Error processing payment:", error);
+        // console.log(error);
+        res.status(500).send("Error processing payment and saving booking.");
+    }
+};
+

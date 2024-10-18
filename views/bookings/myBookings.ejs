@@ -1,0 +1,30 @@
+<% layout("/layouts/boilarplate.ejs") %>
+<div class="container mt-4">
+    <% if (user) { %>
+        <h2>Welcome, <%= user.username %>, your bookings are</h2><br>
+        <% if (user.bookings.length > 0) { %>
+            <ul class="list-group">
+                <% user.bookings.forEach(booking => { %>
+                    <li class="list-group-item mb-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="<%= booking.listing.image.url %>" alt="Listing Image" class="img-fluid rounded" style="max-height: 200px; width: 100%; height: auto;">
+                            </div>
+                            <div class="col-md-8">
+                                <h4><%= booking.listing.title %></h4>
+                                <p><strong>Check-in:</strong> <%= booking.checkinDate.toDateString() %></p>
+                                <p><strong>Check-out:</strong> <%= booking.checkoutDate.toDateString() %></p>
+                                <p><strong>Amount:</strong> ₹<%= booking.amount %></p>
+                                <p><strong>Booking ID:</strong> <%= booking.bookingId %></p>
+                            </div>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No bookings found.</p>
+        <% } %>
+    <% } else { %>
+        <p>You are not logged in.</p>
+    <% } %>
+</div>

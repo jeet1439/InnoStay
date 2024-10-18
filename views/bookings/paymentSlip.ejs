@@ -1,13 +1,80 @@
-<h3>Payment Slip</h3>
-<p>Listing: <%= listing.title %></p>
-<div >
-    <img src="<%=listing.image.url %>" alt="" srcset="" style="width: 15%;">
-</div>
-<p>Check-in Date: <%= checkinDate %></p>
-<p>Check-out Date: <%= checkoutDate %></p>
-<p>Email: <%= email %></p>
-<p>Address: <%= address %></p>
-<p>Number of days: <%= days %></p>
-<p>Total Amount: ₹<%= amount / 100 %></p>
-<p>After Tax: <%= totalAfterTax/100 %> </p>
-<h2>Payment wil be integrated through this route</h2>
+<% layout("/layouts/boilarplate.ejs") %>
+  <div class="container mt-5">
+    <div id="paymentSuccessAlert" class="alert alert-success mt-3 d-none" role="alert">
+        Payment Successful! You will be redirected to your bookings shortly.
+      </div>
+    <div class="row">
+      <!-- Left Side: Payment Slip -->
+      <div class="col-md-6">
+        <p><strong><%= listing.title %></strong></p>
+        <div class="card-img-top">
+          <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="img-fluid" style="width: 70%;">
+        </div>
+        <p></p>
+        <p><%= checkinDate %> &nbsp;&nbsp;&nbsp;&nbsp; to &nbsp;&nbsp;&nbsp;&nbsp;<%= checkoutDate %></p>
+        <p>Address: <%= address %></p>
+        <p>Amount: ₹<%= amount / 100 %>&nbsp;&nbsp; for <%= days %> days</p> 
+        <p>Total: ₹<%= totalAfterTax / 100 %> after &nbsp;&nbsp;<i>18% GST</i></p>
+      </div>
+      <!-- Right Side: Payment Form -->
+      <div class="col-md-6">
+        <h3>Payment Details</h3>
+        <form id="paymentForm" method="POST" action="/listings/book/payment/<%= listing._id %>/bookings" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email id</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= email %>" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" name="cardNumber" required pattern="\d{16}" placeholder="Enter 16-digit card number">
+            <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+          </div>
+          <div class="mb-3">
+            <label for="expiryDate" class="form-label">Expiry Date</label>
+            <input type="month" class="form-control" id="expiryDate" name="expiryDate" required>
+            <div class="invalid-feedback">Please enter a valid expiry date.</div>
+          </div>
+          <div class="mb-3">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" required pattern="\d{3}" placeholder="Enter 3-digit CVV">
+            <div class="invalid-feedback">Please enter a valid 3-digit CVV.</div>
+          </div>
+          <div class="mb-3">
+            <label for="amount" class="form-label">Payable amount</label>
+            <input type="text" class="form-control" id="amount" name="amount" value="<%= totalAfterTax / 100 %>" readonly>
+          </div>
+          <input type="hidden" name="listing[title]" value="<%= listing.title %>">
+          <input type="hidden" name="listing[image][url]" value="<%= listing.image.url %>">
+          <input type="hidden" name="listing[_id]" value="<%= listing._id %>">
+          <input type="hidden" name="checkinDate" value="<%= checkinDate %>">
+          <input type="hidden" name="checkoutDate" value="<%= checkoutDate %>">
+          <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script>
+    (function() {
+      'use strict';
+      var forms = document.querySelectorAll('.needs-validation');
+      Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          } else {
+            event.preventDefault(); 
+            var alert = document.getElementById('paymentSuccessAlert');
+            alert.classList.remove('d-none');
+            // setTimeout(() => {
+            //   window.location.href = '/mybookings'; 
+            // }, 4000);
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    })();
+  </script> -->

@@ -56,3 +56,12 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     }
     next();
 }
+
+module.exports.currentUser = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.locals.currUser = req.user;
+    } else {
+        res.locals.currUser = null;
+    }
+    next();
+};
