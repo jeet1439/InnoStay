@@ -35,7 +35,7 @@ body::before {
 h1 {
     font-size: 6rem;
     font-family: "Londrina Sketch", sans-serif;
-    font-weight: 600;
+    font-weight: 900;
     font-style: normal;
     margin: 0;
 }
@@ -54,22 +54,25 @@ h2 {
     font-size: 16px; 
     cursor: pointer; 
     transition: background-color 0.3s ease, transform 0.2s ease; 
-}
-.button a {
-    color: #FFFFFF; 
     text-decoration: none; 
-    display: block;
-    height: 100%; 
-    width: 100%;
     font-size: 20px;
     font-family: "Roboto";
     font-weight: 300;
 }
+
 .button:hover {
-    background-color: #28c0d7; 
+    background-color: #008bd1; 
     transform: translateY(-2px); 
 }
 
 .button:active {
     transform: translateY(0); 
+}
+@media (max-width: 776px){
+    .box{
+        color: rgb(236, 236, 236);
+    }
+    h2{
+        color: #d4d3d3;
+    }
 }
