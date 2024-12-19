@@ -2,6 +2,8 @@ const Listing = require("./models/listing.js");
 const ExpressError = require("./utils/ExpressError.js");
 const  { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
+
+
 //validate listing:
 module.exports.validateListing = (req, res, next) => {
     let { error, value } = listingSchema.validate(req.body);

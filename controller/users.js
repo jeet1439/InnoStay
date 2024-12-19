@@ -20,7 +20,7 @@ module.exports.signup = async (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            req.flash("success", "welcome to wonderlust");
+            req.flash("success", "welcome to Innostay");
             res.redirect("/listings");
         })
     } catch (e) {
