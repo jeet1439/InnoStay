@@ -27,5 +27,4 @@
 Copyright (c) 2025 Jeet Banik
 
 Permission is hereby NOT granted to use, copy, modify, or distribute this software for commercial or public use without explicit written permission from the author.
-This software is provided for personal or educational use only.
 All rights reserved.
