@@ -28,6 +28,8 @@ const Listing = require("./models/listing");
 const paymentRouter = require("./routes/payment.js");
 const policyRouter = require("./routes/policy.js");
 const { currentUser } = require('./middleware.js');
+const job = require("./lib/cron.js");
+
 main()
   .then(() => {
     console.log("connected to DB");
@@ -67,6 +69,7 @@ const sessionOptions = {
   }
 };
 
+job.start();
 
 // root direcroery:
 app.get("/", (req, res) => {
