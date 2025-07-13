@@ -70,7 +70,7 @@ const sessionOptions = {
 
 // root direcroery:
 app.get("/", (req, res) => {
-  res.render("landing.ejs"); 
+  res.redirect("/listings");
 });
 
 app.use(session(sessionOptions));

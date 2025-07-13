@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innostay</title>
+  <link rel="stylesheet" href="/css/idxStyle.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playfair+Display&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="/resources/favicon.ico" type="image/x-icon">
+</head>
+<style>
+ .hero-wrapper {
+  position: relative;
+  height: 570px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+#bg1 {
+  opacity: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  margin-top: 10rem;
+  font-family: 'Playfair Display', serif;
+}
+</style>
+
+<body>
+
+  <!-- Hero Section (Background Image + Overlay Content) -->
+<div class="hero-wrapper text-white">
+  <div class="hero-image" id="bg1"></div>
+  <div class="hero-image" id="bg2"></div>
+
+  <%- include("../includes/navlanding.ejs") %>
+  <div class="text-center hero-text">
+    <h1 class="display-4 fw-bold">WELCOME TO<br>INNOSTAY HOTELS</h1>
+    <p class="lead mt-2">Find yout hotel in downtown</p>
+  </div>
+</div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container mt-4">
+    <%- include("../includes/flash.ejs") %>
+      <%- body %>
+  </div>
+
+  <!-- Footer -->
+  <%- include("../includes/footer.ejs") %>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+ <script>
+  const images = [
+    '/resources/herobgone.jpg',
+    '/resources/herobgtwo.jpg',
+    '/resources/herobgthree.jpg',
+    '/resources/herobgfour.jpg',
+  ];
+
+  let current = 0;
+  let showingBg1 = true;
+
+  const bg1 = document.getElementById('bg1');
+  const bg2 = document.getElementById('bg2');
+
+  // Initial load
+  bg1.style.backgroundImage = `url('${images[0]}')`;
+
+  setInterval(() => {
+    current = (current + 1) % images.length;
+
+    if (showingBg1) {
+      bg2.style.backgroundImage = `url('${images[current]}')`;
+      bg2.style.opacity = 1;
+      bg1.style.opacity = 0;
+    } else {
+      bg1.style.backgroundImage = `url('${images[current]}')`;
+      bg1.style.opacity = 1;
+      bg2.style.opacity = 0;
+    }
+
+    showingBg1 = !showingBg1;
+  }, 4000);
+</script>
+
+</html>

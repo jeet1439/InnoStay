@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md bg-transparent sticky-top">
+  <div class="container container-fluid bg-transparent">
+      <a class="navbar-brand" href="/listings"><img src="/resources/logo.png" alt="" class="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+    <form class="d-flex ms-auto searchcss" action="/listings/search" method="GET" >
+      <select class="form-select me-2 selectpicker" name="country" required style="background-color: rgba(255, 255, 255, 0.2); color: #fff;">
+          <option value="" disabled selected>Choose a country</option>
+          <option value="India">India</option>
+          <option value="United States">United States</option>
+          <option value="Canada">Canada</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Australia">Australia</option>
+      </select>
+      <button class="btn s-btn" type="submit">Search</button>
+  </form>
+        <div class="navbar-nav ms-auto gap">
+          <a class="nav-link prop" href="/listings/new">List Your Property &nbsp;<i class="fa-solid fa-house"></i></a>
+          <% if(!currUser){ %>
+          <b><a class="nav-link"  href="/signup">Sign up&nbsp;&nbsp;<i class="fa-solid fa-user"></i></a></b>
+          <b><a class="nav-link" href="/login">Log in&nbsp;&nbsp;<i class="fa-solid fa-right-to-bracket"></i></a></b>
+          <% } %>
+          <% if(currUser){ %>
+          <a class="nav-link" href="/logout">Logout&nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>
+          <% } %>
+    </div>
+  </div>
+</nav>
+
+
