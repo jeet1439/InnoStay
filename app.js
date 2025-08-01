@@ -28,7 +28,7 @@ const Listing = require("./models/listing");
 const paymentRouter = require("./routes/payment.js");
 const policyRouter = require("./routes/policy.js");
 const { currentUser } = require('./middleware.js');
-const job = require("./lib/cron.js");
+// const job = require("./lib/cron.js");
 
 main()
   .then(() => {
@@ -69,7 +69,7 @@ const sessionOptions = {
   }
 };
 
-job.start();
+// job.start();
 
 // root direcroery:
 app.get("/", (req, res) => {
